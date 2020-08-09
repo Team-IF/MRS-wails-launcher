@@ -6,7 +6,7 @@ import (
 )
 
 func basic() string {
-	return "World!"
+	return "asdf World!"
 }
 
 func main() {
