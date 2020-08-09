@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-function App() {
-    return (
-        <div className="text-center">
-            adf
-        </div>
-    );
+const App = ({ children }) => {
+  return <div>{children}</div>
 }
 
-export default App;
+export default App
