@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import * as actions from '../actions/auth'
 
 export default () => {
+  const dispatch = useDispatch()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const usernameTrim = username.trim()
     const passwordTrim = password.trim()
     if (!usernameTrim) {
@@ -15,6 +20,19 @@ export default () => {
     if (!passwordTrim) {
       setError('비밀번호를 적어주세요')
       return
+    }
+    try {
+      const res = await axios.post(
+        'https://thingproxy.freeboard.io/fetch/https://authserver.mojang.com/authenticate',
+        {
+          username: usernameTrim,
+          password: passwordTrim
+        }
+      )
+      const { accessToken, clientToken } = res.data
+      dispatch(actions.SignIn(accessToken, clientToken))
+    } catch (err) {
+      setError(err.response.ErrorMessage)
     }
   }
 

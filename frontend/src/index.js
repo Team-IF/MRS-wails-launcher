@@ -4,6 +4,9 @@ import 'core-js/stable'
 import './index.css'
 import App from './components/App'
 import './assets/styles/main.css'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './redux/index'
 
 import { HashRouter, Route } from 'react-router-dom'
 
@@ -13,11 +16,13 @@ import * as Wails from '@wailsapp/runtime'
 
 Wails.Init(() => {
   ReactDOM.render(
-    <HashRouter>
-      <App>
-        <Route path='/' component={SignIn} exact />
-      </App>
-    </HashRouter>,
+    <Provider store={createStore(rootReducer)}>
+      <HashRouter>
+        <App>
+          <Route path='/' component={SignIn} exact />
+        </App>
+      </HashRouter>
+    </Provider>,
     document.getElementById('app')
   )
 })
