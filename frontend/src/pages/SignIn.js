@@ -40,6 +40,7 @@ export default () => {
       } = res.data
       console.log(name, id)
       dispatch(actions.SignIn(accessToken, clientToken))
+      dispatch(actions.SetUserInfo(name, id))
     } catch (err) {
       setError(err.response.data.errorMessage)
     }

@@ -13,6 +13,8 @@ export const SignIn = (accessToken, clientToken) => {
 }
 
 export const SetUserInfo = (userName, userID) => {
+  localStorage.setItem('userName', userName)
+  localStorage.setItem('userID', userID)
   return {
     type: AUTH_SETINFO,
     payload: {
@@ -25,6 +27,8 @@ export const SetUserInfo = (userName, userID) => {
 export const SignOut = () => {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('clientToken')
+  localStorage.removeItem('userName')
+  localStorage.removeItem('userID')
   return {
     type: AUTH_SIGNOUT
   }
