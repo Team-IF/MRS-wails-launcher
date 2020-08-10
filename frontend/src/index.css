@@ -12,6 +12,13 @@ body {
   user-select: none;
 }
 
+.centerAll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .input01 {
   background-color: #252525;
   padding: 10px;
@@ -20,4 +27,8 @@ body {
 
 .input01::placeholder {
   color: #474747;
+}
+
+.input01:focus {
+  outline: none;
 }
