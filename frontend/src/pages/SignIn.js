@@ -26,13 +26,22 @@ export default () => {
         'https://thingproxy.freeboard.io/fetch/https://authserver.mojang.com/authenticate',
         {
           username: usernameTrim,
-          password: passwordTrim
+          password: passwordTrim,
+          agent: {
+            name: 'Minecraft',
+            version: 1
+          }
         }
       )
-      const { accessToken, clientToken } = res.data
+      const {
+        accessToken,
+        clientToken,
+        selectedProfile: { name, id }
+      } = res.data
+      console.log(name, id)
       dispatch(actions.SignIn(accessToken, clientToken))
     } catch (err) {
-      setError(err.response.ErrorMessage)
+      setError(err.response.data.errorMessage)
     }
   }
 

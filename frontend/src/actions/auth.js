@@ -1,4 +1,4 @@
-import { AUTH_SIGNIN, AUTH_SIGNOUT } from './types'
+import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_SETINFO } from './types'
 
 export const SignIn = (accessToken, clientToken) => {
   localStorage.setItem('accessToken', accessToken)
@@ -8,6 +8,16 @@ export const SignIn = (accessToken, clientToken) => {
     payload: {
       accessToken,
       clientToken
+    }
+  }
+}
+
+export const SetUserInfo = (userName, userID) => {
+  return {
+    type: AUTH_SETINFO,
+    payload: {
+      userName,
+      userID
     }
   }
 }
